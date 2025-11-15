@@ -1,6 +1,7 @@
 package aleks.learningplatform.web.mapper;
 
 import aleks.learningplatform.domain.content.Lesson;
+import aleks.learningplatform.domain.content.Module;
 import aleks.learningplatform.domain.course.Course;
 import aleks.learningplatform.domain.course.CourseReview;
 import aleks.learningplatform.domain.course.Tag;
