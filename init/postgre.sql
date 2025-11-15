@@ -21,6 +21,9 @@
 -- DROP TABLE IF EXISTS users CASCADE;
 
 CREATE SCHEMA IF NOT EXISTS learning_platform;
+
+SET search_path TO learning_plattform;
+
 --  USERS
 
 CREATE TABLE IF NOT EXISTS users (

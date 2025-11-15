@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: learning_postgres
+    environment:
+      POSTGRES_DB: learning_platform
+      POSTGRES_USER: lp_user
+      POSTGRES_PASSWORD: lp_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    command: >
+      postgres -c listen_addresses='*'
+
+  backend:
+    build: .
+    container_name: learning_backend
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/learning_platform
+      SPRING_DATASOURCE_USERNAME: lp_user
+      SPRING_DATASOURCE_PASSWORD: lp_password
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
+
